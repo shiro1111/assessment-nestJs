@@ -2,6 +2,7 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from 'src/model/user.model';
+import { throwError } from 'rxjs';
 
 
 @Injectable()
@@ -10,6 +11,15 @@ export class UserService {
 
     async getAll() {
         return await this.userModel.find();
+    }
+
+    async getUser(id) {
+        try {
+            return await this.userModel.findOne({_id: id});
+           
+        } catch (error) {
+            throw new HttpException('User not found' , HttpStatus.BAD_REQUEST)
+        }
     }
 
     async createUser(user) {
