@@ -25,7 +25,7 @@ export class UserController {
     return await this.userService.updateUser(user);
   }
 
-  @Delete('delete/:id')
+  @Delete(':id')
   async deleteUser(@Param('id') id: string) {
     return await this.userService.deleteUser(id);
   }

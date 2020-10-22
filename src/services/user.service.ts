@@ -33,7 +33,8 @@ export class UserService {
 
     async updateUser(user) {
         try {
-            return await this.userModel.updateOne(user);
+             await this.userModel.updateOne(user);
+             return 'User successful updated'
         } catch (error) {
             throw new HttpException('Failed to update user' , HttpStatus.BAD_REQUEST);
 
@@ -42,7 +43,8 @@ export class UserService {
    
     async deleteUser(id) {
         try {
-            return await this.userModel.deleteOne({_id : id});
+             await this.userModel.deleteOne({_id : id});
+             return 'user successful deleted'
             
         } catch (error) {
             throw new HttpException('Failed to delete user' , HttpStatus.BAD_REQUEST);
