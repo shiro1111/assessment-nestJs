@@ -15,7 +15,7 @@ export class UserService {
 
     async getUser(id) {
         try {
-            return await this.userModel.findOne({_id: id});
+            return await this.userModel.findOne({username: id});
            
         } catch (error) {
             throw new HttpException('User not found' , HttpStatus.BAD_REQUEST)
@@ -33,8 +33,7 @@ export class UserService {
 
     async updateUser(user) {
         try {
-             await this.userModel.updateOne(user);
-             return 'User successful updated'
+            return await this.userModel.updateOne(user);
         } catch (error) {
             throw new HttpException('Failed to update user' , HttpStatus.BAD_REQUEST);
 
@@ -43,8 +42,7 @@ export class UserService {
    
     async deleteUser(id) {
         try {
-             await this.userModel.deleteOne({_id : id});
-             return 'user successful deleted'
+             return await this.userModel.deleteOne({_id : id});
             
         } catch (error) {
             throw new HttpException('Failed to delete user' , HttpStatus.BAD_REQUEST);
